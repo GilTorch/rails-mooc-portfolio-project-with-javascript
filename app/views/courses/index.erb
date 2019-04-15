@@ -2,8 +2,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="courses-container col-md-6 offset-md-3 mt-3 mb-3">
-            <ul>
-                <h3>Courses available on the platform:</h3>
+            <h3>Courses available on the platform:</h3>
+            <ul class="courses-list">
                 <% @courses.each do |course| %>
                     <li><%= course.id %>.-<%= link_to("#{course.title}",course_path(course)) %> <i class="<%= complete_fail_icon(course,"course") %>"></i></li>
                 <% end %>
@@ -11,3 +11,17 @@
         </div>
     </div>
 </div>
+
+<script>
+function parseCourse(data){
+    let coursesList=""
+       data.forEach((course)=>{
+         coursesList+=`<li>${course.id}.-<a href="/courses/${course.id}">${course.title}</a></li>`
+     })
+
+     $(".courses-list").html(coursesList)
+}
+
+Course.all(parseCourse)
+
+</script>
