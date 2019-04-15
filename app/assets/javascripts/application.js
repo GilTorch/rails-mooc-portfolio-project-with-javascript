@@ -17,3 +17,13 @@
 //= require popper
 //= require bootstrap
 //= require_tree 
+
+
+function completeFailIcon(course,currentUserId){
+
+    let complete_icon="fa fa-check-circle green"
+    let fail_icon="fa fa-circle red"
+
+    let completed=course.user_courses.filter(user_course=>user_course.user_id==currentUserId)[0].completed
+    return completed ? complete_icon : fail_icon
+}

@@ -14,9 +14,11 @@
 
 <script>
 function parseCourse(data){
+    let currentUserId="<%= current_user.id %>"
+
     let coursesList=""
        data.forEach((course)=>{
-         coursesList+=`<li>${course.id}.-<a href="/courses/${course.id}">${course.title}</a></li>`
+         coursesList+=`<li>${course.id}.-<a href="/courses/${course.id}">${course.title}</a> <i class="${completeFailIcon(course,currentUserId)}"></i> </li>`
      })
 
      $(".courses-list").html(coursesList)
