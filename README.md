@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## DESCRIPTION 
+This app is a mooc that uses a rails api and a javascript front end 
 
-Things you may want to cover:
+## INSTALLATION GUIDE 
 
-* Ruby version
+1.- Clone the app with `git clone https://GilTorch/rails-mooc-portfolio-project-with-javascript` 
+2.- Install the gems with `bundle` 
+3.- Migrate the Database with `rails db:migrate`
+4.- Seed the Database with `rails db:seed`
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
 
 * ...

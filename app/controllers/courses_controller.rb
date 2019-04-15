@@ -19,16 +19,7 @@ class CoursesController < ApplicationController
     def edit 
     end
 
-    def create
-        course=Course.new(course_params)
-
-        if course.save 
-            redirect_to course_path(course)
-        else 
-            redirect_to root_path
-        end
-    end
-
+  
     def update 
         @course.update(course_params)
         redirect_to course_path(@course)
@@ -45,6 +36,10 @@ class CoursesController < ApplicationController
 
 
     def show 
+        respond_to do |format| 
+            format.html { render :show }
+            format.json { render json: @course}
+        end
     end
 
     def destroy

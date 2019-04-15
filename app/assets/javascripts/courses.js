@@ -7,10 +7,17 @@ class Course{
         this.users=users; 
         this.chapters=chapters;
     }
+}
 
-    static all(callback){
-        $.get("/courses.json",function(data){
-            callback(data);
-        })
-    }
+Course.byId=function(id,callback){
+    $.get(`/courses/${id}.json`,function(data){
+        console.log(data)
+        callback(data)
+    })
+}
+
+Course.all=function(callback){
+    $.get("/courses.json",function(data){
+        callback(data);
+    })
 }

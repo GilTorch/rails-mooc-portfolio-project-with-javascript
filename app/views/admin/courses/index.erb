@@ -20,7 +20,7 @@
       <th scope="col">Action</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="courses-list">
     <% @courses.each do |course| %>
         <tr>
             <th scope="row"><%= course.id %></th>
@@ -38,6 +38,8 @@
     <% end %>
   </tbody>
 </table>
+
+
 <%= form_for @course,url:"/admin/courses",html: { class: "col-md-6 mb-3" } do |f| %>
     <% if @course.errors.any? %>
         <div class="alert alert-danger error_explanation">
@@ -64,3 +66,21 @@
 <% end %>
 </div>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+ 
+      var values = $(this).serialize();
+ 
+      var posting = $.post('/admin/courses', values);
+ 
+      posting.done(function(data) {
+        // TODO: handle response
+        alert(data)
+      });
+    });
+  });
+</script

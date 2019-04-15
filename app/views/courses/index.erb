@@ -4,9 +4,7 @@
         <div class="courses-container col-md-6 offset-md-3 mt-3 mb-3">
             <h3>Courses available on the platform:</h3>
             <ul class="courses-list">
-                <% @courses.each do |course| %>
-                    <li><%= course.id %>.-<%= link_to("#{course.title}",course_path(course)) %> <i class="<%= complete_fail_icon(course,"course") %>"></i></li>
-                <% end %>
+                Loading ...
             </ul>
         </div>
     </div>

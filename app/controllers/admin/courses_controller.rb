@@ -1,4 +1,5 @@
 class Admin::CoursesController < AdminController
+    skip_before_action :verify_authenticity_token  
     before_action :set_course,only:[:show,:edit,:update,:destroy] 
 
     def index 
@@ -10,14 +11,11 @@ class Admin::CoursesController < AdminController
         render "admin/courses/show"
     end
 
-    def create 
-        @course=Course.new(course_params)
-        @courses=Course.all
-        if @course.save 
-            flash[:success]="Course was successfully created."
-        end
-        render "admin/courses/index"
+    def create
+        course=Course.create(course_params);
+        render json: course,status: 201 
     end
+
 
     def edit 
         render "admin/courses/edit"

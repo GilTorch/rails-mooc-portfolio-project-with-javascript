@@ -1,6 +1,6 @@
 <div class="container-fluid">
 <div class="jumbotron jumbotron-fluid">
-<h1 class="text-center"><%= @course.title %> <i class="<%= complete_fail_icon(@course,"course") %>"></i></h1>
+<h1 class="course-title text-center">Loading...</h1>
  <div class="text-center">
  <% if course_completed(@course) %>
         <%= link_to 'Reset Course Progress', reset_course_path(@course),:class=>"btn btn-danger" %>
@@ -9,7 +9,7 @@
 </div>
 <div class="row">
 <div class="course-container offset-md-3 col-md-6 mt-3 mb-3">
-    <ul>
+    <ul class="chapters-list">
     <h3>Chapters:</h3>
     <% @course.chapters.each do |chapter| %>
         <li><%= link_to "#{chapter.title}" ,chapter_path(chapter) %> <i class="<%= complete_fail_icon(chapter,"chapter") %>"></i></li>
@@ -27,3 +27,20 @@
 </div>
 </div>
 </div>
+<script>
+ let courseId="<%= @course.id %>"
+
+ function parseCourse(data){
+     let currentUserId="<%= current_user.id %>"
+     let icon=`<i class="${completeFailIcon(data,currentUserId)}"</i>`
+     $(".course-title").html(data.title+" "+icon)
+    
+     let chaptersList=""
+     data.chapters.forEach(function(chapter){
+        chaptersList+=`<li><a href="/chapters/${chapter.id}">${chapter.title}</a></li>`
+     })
+     $(".chapters-list").html(chaptersList)
+ }
+
+ Course.byId(courseId,parseCourse)
+</script>
